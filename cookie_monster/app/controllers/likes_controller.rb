@@ -14,7 +14,7 @@ class LikesController < ApplicationController
 
   # GET /likes/new
   def new
-    @like = Like.new
+    @like = current_user.likes.build
   end
 
   # GET /likes/1/edit
@@ -24,7 +24,7 @@ class LikesController < ApplicationController
   # POST /likes
   # POST /likes.json
   def create
-    @like = Like.new(like_params)
+    @like = current_user.likes.build(like_params)
 
     respond_to do |format|
       if @like.save
