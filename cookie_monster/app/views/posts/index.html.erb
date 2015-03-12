@@ -23,7 +23,7 @@
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
         <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
-        <td><%= link_to 'Like', '#', data: { id: post.id }, class: 'like_post' %></td>
+        <td><%= link_to 'Like', "/posts/#{post.id}/like", class: 'like_post' %></td>
       </tr>
     <% end %>
   </tbody>

@@ -38,6 +38,13 @@ class PostsController < ApplicationController
     end
   end
 
+  def like
+    post = Post.find(params[:post_id])
+    current_user.toggle_like(post)
+
+    redirect_to "/posts"
+  end
+
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update

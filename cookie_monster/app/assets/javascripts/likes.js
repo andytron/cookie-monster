@@ -1,14 +1,18 @@
 jQuery(function(){
 	$('.like_post').on('click', function(event) {
 		event.preventDefault();
-		var id = $(event.target).data('id');
+		var url = $(event.target).attr('href');
 		$.ajax({
-			url: '/likes',
-			type: 'POST',
-			data: {like: {post_id: id}},
+			url: url,
+			type: 'GET',
 			success: function(result) {
 				
-			}
+				// if(liked turn red){
+					$(this).css({'color': 'red'});
+				// } else(keep like link same color) {
+
+				// }
+			}.bind(this)
 		})
 	})
 })
