@@ -8,7 +8,7 @@ jQuery(function(){
 			success: function(result) {
 				
 				// if(liked turn red){
-					$(this).css({'color': 'red'});
+					$(this).toggleClass('liked');
 				// } else(keep like link same color) {
 
 				// }
