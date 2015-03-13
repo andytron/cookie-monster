@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :posts
-  has_many :posts, through: :likes, as: :liked_posts
+  has_many :liked_posts, through: :likes, as: :liked_posts
   has_many :likes
 
 	def toggle_like(post)

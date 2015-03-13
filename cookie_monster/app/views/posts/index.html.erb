@@ -5,7 +5,7 @@
   <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
   </div>
-</nav>
+  </nav>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
     <title></title>
@@ -41,15 +41,15 @@
         <td><%= post.content %></td>
         <td><%= post.user.email %></td>
         <td><%= link_to 'Show', post %></td>
-        <% if post.user == current_user %>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-        <% if current_user.likes.where(post_id: post.id) != [] %>
-        <td><%= link_to 'Like', "/posts/#{post.id}/like", class: 'like_post liked' %></td>
-        <% else %> 
-        <td><%= link_to 'Like', "/posts/#{post.id}/like", class: 'like_post' %></td>
-        <% end %>
+          <% if post.user == current_user %>
+            <td><%= link_to 'Edit', edit_post_path(post) %></td>
+            <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+          <% if current_user.likes.where(post_id: post.id) != [] %>
+            <td><%= link_to 'Like', "/posts/#{post.id}/like", class: 'like_post liked' %></td>
+            <% else %> 
+            <td><%= link_to 'Like', "/posts/#{post.id}/like", class: 'like_post' %></td>
+      <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -58,3 +58,7 @@
 <br>
 
 <%= link_to 'New Post', new_post_path %>
+</body>
+</html>
+
+

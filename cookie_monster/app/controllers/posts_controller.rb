@@ -25,6 +25,7 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
+    Pry.start(binding)
     @post = current_user.posts.build(post_params)
 
     respond_to do |format|
