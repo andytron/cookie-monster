@@ -11,7 +11,7 @@ function handleSearchResults(results, status){
     var marker = new google.maps.Marker({
       position: results[i].geometry.location,
       map: map,
-      // icon:
+      icon: 'http://i.imgur.com/DfA8TrB.png?1' 
     });
   }
 }
@@ -41,7 +41,8 @@ function initialize(location) {
 
   var marker = new google.maps.Marker({
     position: currentLocation,
-    map: map
+    map: map,
+    icon:'http://i.imgur.com/rmrs7kG.png?1'
   });
 
   service = new google.maps.places.PlacesService(map);
@@ -93,25 +94,37 @@ $(document).ready(function(){
 function getVenues(location) {
   // function getLocation(location) {
   // debugger;
-  var keyword = "cookies";
+    var keyword = "cookies";
     var lat = location.coords.latitude;
     var lng = location.coords.longitude;
 
+    var data = {keyword: keyword, lat: lat, lng: lng};
+
   // var coords = navigator.geolocation.getCurrentPosition(initialize);
 
-	$.ajax({
-	  url: "https://api.foursquare.com/v2/venues/explore?ll=" + lat + "," + lng + " &client_id=I34KOKW5DI2MSD12IHDY2KKYIT2UDUD2VHDC5WTBWX4TG4SJ&client_secret=1V0VGFUVO10EJ0NL03EJCIDNLVS5FTZC0WWWCSXAWY5UDHF2&v=20150301&query="+keyword,
-    type: 'GET',
-	  dataType: 'json',
-	  success: function (data) {
-	    console.log(data);
+    // $.ajax({
+    //   url: "https://api.foursquare.com/v2/venues/explore?ll=" + lat + "," + lng + " &client_id=I34KOKW5DI2MSD12IHDY2KKYIT2UDUD2VHDC5WTBWX4TG4SJ&client_secret=1V0VGFUVO10EJ0NL03EJCIDNLVS5FTZC0WWWCSXAWY5UDHF2&v=20150301&query="+keyword,
+    //   type: 'GET',
+    //   dataType: 'json',
+    //   success: function (data) {
+    //     console.log(data);
+
+    $.ajax({
+      url: '/venues',
+      type: 'Get',
+      dataType: 'json',
+      data: data,
+      success: function (data) {
+        console.log(data);
 
       $('#venues').show();
-	    var dataobj = data.response.groups[0].items;
-	    $('#venues').empty();
+        var dataObj = data.response.groups[0].items;
+        $('#venues').empty();
 
-	    // Build markers and elements from venues returned
-      $.each( dataobj, function() {
+        // storeVenues(dataObj);
+
+        // Build markers and elements from venues returned
+      $.each( dataObj, function() {
         if (this.venue.categories[0].name) {
           category = "Category: " + this.venue.categories[0].name;
         } else {
@@ -135,12 +148,18 @@ function getVenues(location) {
         // } else {
         //   menu = "";
         // }
-        //
-        // if (this.venue.price.message) {
+
+        // if (this.venue.price.message != undefined) {
         //   pricing = "Pricing: " + this.venue.price.message;
         // } else {
         //   pricing = "";
         // }
+
+        if (this.venue.location.distance) {
+          distance = "Distance: " + (this.venue.location.distance / 1609.3).toPrecision(2) + " miles";
+        } else {
+          distance = "";
+        }
 
         if (this.venue.rating) {
           rating = "Rating: " + this.venue.rating;
@@ -154,9 +173,24 @@ function getVenues(location) {
           website = "";
         }
 
-      var appendDataHtml = '<div id="venues"><h2><span>' + this.venue.name + '</span></h2>' + category + address + phone + rating + website + '</div>';
+      var appendDataHtml = '<div id="venues"><h2><span>' + this.venue.name + '</span></h2>' + category + '<br>' + address + '<br>' + phone + '<br>' + distance + '<br>' + rating + '<br>' + website + '</div>';
       $('#venues').append(appendDataHtml);
-	    });
-    },
-	});
-}
+        });
+      },
+    });
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

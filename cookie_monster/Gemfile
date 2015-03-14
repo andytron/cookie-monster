@@ -27,6 +27,9 @@ gem 'devise', '~> 3.4.1'
 # Acts as votable
 gem 'acts_as_votable', '~> 0.10.0'
 
+#HTTParty gem
+gem 'httparty', '~> 0.13.3'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
