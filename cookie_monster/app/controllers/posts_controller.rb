@@ -5,7 +5,11 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    if params[:foursquare_id]
+      @posts = Post.where(foursquare_id: params[:foursquare_id])
+    else
+      @posts = Post.all
+    end
   end
 
   # GET /posts/1
@@ -25,7 +29,6 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    Pry.start(binding)
     @post = current_user.posts.build(post_params)
 
     respond_to do |format|

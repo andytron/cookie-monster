@@ -1,18 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>CookieMonster</title>
+  <title>Cookie Monster</title>
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<p class="notice"><%= notice %></p>
-	<p class="alert"><%= alert %></p>
-	<%= link_to "Sign Up", new_user_registration_path  %>
-	<%= link_to "Sign In", new_user_session_path  %>
-	<%= link_to "Sign Out", destroy_user_session_path, method: 'DELETE'  %>
-<%= yield %>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Cookie Monster</a>
+      </div>
+      <div class="navbar">
+        <ul class="nav navbar-nav navbar-right">
+            <li><button type="button" class="btn btn-default navbar-btn"><%= link_to "Sign Out", destroy_user_session_path, method: 'DELETE'  %></button></li>
+        </ul>
+       </div>
+    </div>
+  </nav>
 
+  <p class="bg-success"></p>
+  <p class="bg-warning"></p>
+
+  <%= yield %>
+
+  <footer class="navbar navbar-default navbar-fixed-bottom">
+    <div class="panel-footer">
+      <p class="text-muted">&copy; 2015 Cookie Monster LLC</p>
+    </div>
+  </footer>
 </body>
 </html>
