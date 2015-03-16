@@ -63,18 +63,16 @@ $(document).ready(function(){
           var venueLat = this.venue.location.lat;
           var venueLng = this.venue.location.lng;
           var newMarker = venueLat + venueLng;
-          // var contentString = '<div id="infowindow-content">' +
-          // '<h3>' + this.venue.name + '</h3>' +
-          // '<p>Address: ' + this.venue.location.formattedAddress + '</p>' +
-          // '<p>Category: ' + this.venue.categories[0].name + '</p>' +
-          // '<p>Rating: ' + this.venue.rating + '</p>' +
-          // '</div>';
+          var contentString = '<div id="infowindow-content">' +
+          '<h3>' + this.venue.name + '</h3>' +
+          '<p>Address: ' + this.venue.location.formattedAddress + '</p>' +
+          '<p>Category: ' + this.venue.categories[0].name + '</p>' +
+          '<p>Rating: ' + this.venue.rating + '</p>' +
+          '</div>';
 
-          // var infowindow = new google.maps.InfoWindow({
-          //   content: contentString
-          // });
-
-          // attachInfo(infowindow, map, newMarker);
+          var infowindow = new google.maps.InfoWindow({
+            content: contentString
+          });
 
           markers.push( newMarker );
 
@@ -136,31 +134,29 @@ $(document).ready(function(){
 
           $newVenueLi.append($newVenueShow);
           $venuesList.append($newVenueLi);
+        setMarkers(map, this.venue, infowindow);
         });
-        setMarkers(map, venues);
       }
   });
 }
 
-function setMarkers(map, venues) {
+function setMarkers(map, venue, infowindow) {
 
-  for (i = 0; i < venues.length; i++) {
-
+        
     var marker = new google.maps.Marker({
       position: new google.maps.LatLng(
-        venues[i].venue.location.lat,
-        venues[i].venue.location.lng
+        venue.location.lat,
+        venue.location.lng
         ),
       map: map,
-      title: venues[i].venue.name,
+      title: venue.name,
       icon: 'http://i.imgur.com/rmrs7kG.png?1',
       animation:google.maps.Animation.DROP
-    });
-  }      
+  });      
+      attachInfo(infowindow, map, marker);
 }
 
   function attachInfo(infowindow, map, marker) {
-
     google.maps.event.addListener(marker,'click',function(){
 
       infowindow.close();
