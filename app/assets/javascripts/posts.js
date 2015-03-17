@@ -181,6 +181,7 @@ $(function(){
       type: 'POST',
       dataType: 'json',
       success: function (data) {
+        postComment();
         // define variable for the div element
         // define variable for our wrapper div
         // for each comment we add it will turn into an li inside our div 
@@ -191,9 +192,12 @@ $(function(){
   });
 });
 
-// function postComment() {
-//   var $post = $('<li class="tip"></li>').text();
-// }
+function postComment() {
+  var div = document.getElementById('.comments');
+  var content = document.createTextNode('.comment-form');
+  div.appendChild(content);
+  // var $post = $('<li class="tip"></li>').text();
+}
 
 
 
