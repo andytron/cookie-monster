@@ -115,8 +115,10 @@ $(window).load(function(){
           var $venuesList = $('#venues');
           var $newVenueLi = $('<li><div class="venue-name"><h2>' + this.venue.name + '</h2></div></li>' );
           var $addPostForm = $('<form class="comment-form" data-id =' + this.venue.id + '><input type="text" name="comment" ><input type="submit" value="Add tip"></form>');
-
+          var $statsWrapper = $('<div class="stats-wrapper"></div>');
           var $newVenueShow = $('<div class="venue-show"></div>');
+          var $comments = $('<div class="comments"></div>');
+
           $newVenueShow.append('<p>' + category + '</p>');
           $newVenueShow.append('<p>' + address + '</p>');
           $newVenueShow.append('<p>' + phone + '</p>');
@@ -124,6 +126,7 @@ $(window).load(function(){
           $newVenueShow.append('<p>' + rating + '</p>');
           $newVenueShow.append('<p>' + website + '</p>');
           $newVenueShow.append($addPostForm);
+          $statsWrapper.append($newVenueShow);
 
           var $newVenueCommentsList = $('<ul class="comments-list"></ul>');
           $newVenueShow.append($newVenueCommentsList);
@@ -134,8 +137,12 @@ $(window).load(function(){
             $newVenueShow.slideToggle();
           });
 
+          $
           $newVenueLi.append($newVenueShow);
           $venuesList.append($newVenueLi);
+          $statsWrapper.append($newVenueLi);
+          $venuesList.append($statsWrapper);
+
         setMarkers(map, this.venue, infowindow);
         });
       }
@@ -169,10 +176,20 @@ function setMarkers(map, venue, infowindow) {
   $(function(){
 
   $('body').on('submit', $('.comment-form'), function(){
-    debugger;
+    $.ajax({
+      url: '/venues',
+      type: 'POST',
+      dataType: 'json',
+      success: function (data) {
+        // define variable for the div element
+        // define variable for our wrapper div
+        // for each comment we add it will turn into an li inside our div 
+        // append li to the div we want, and then append that to our wrapper div 
+        // attach like button if we're feeling saucy
+      }
+    });
   });
-    
-  })
+ });
 
 
 
