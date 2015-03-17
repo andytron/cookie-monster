@@ -6,6 +6,10 @@
   padding: 0;
 }
 
+li:hover {
+  cursor: pointer;
+}
+
 .clearfix:after {
   clear: both;
   display: block;
