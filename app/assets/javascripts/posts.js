@@ -17,7 +17,7 @@ function renderMap(location) {
    position: currentLocation,
    map: map,
    animation: google.maps.Animation.DROP,
-   icon: 'http://i.imgur.com/DfA8TrB.png?1'
+   icon: 'http://i.imgur.com/MrPOkeX.png?1'
  });
 }
 
@@ -159,7 +159,7 @@ function setMarkers(map, venue, infowindow) {
       ),
     map: map,
     title: venue.name,
-    icon: 'http://i.imgur.com/rmrs7kG.png?1',
+    icon: 'http://i.imgur.com/TUTfMHG.png?1',
     animation:google.maps.Animation.DROP
   });      
   attachInfo(infowindow, map, marker);
