@@ -29,7 +29,7 @@ function toggleBounce(){
   }
 }
 
-$(document).ready(function(){
+$(window).load(function(){
   var lat, lng;
 
   var returnCoords = function(position){
@@ -114,6 +114,7 @@ $(document).ready(function(){
 
           var $venuesList = $('#venues');
           var $newVenueLi = $('<li><div class="venue-name"><h2>' + this.venue.name + '</h2></div></li>' );
+          var $addPostForm = $('<form class="comment-form" data-id =' + this.venue.id + '><input type="text" name="comment" ><input type="submit" value="Add tip"></form>');
 
           var $newVenueShow = $('<div class="venue-show"></div>');
           $newVenueShow.append('<p>' + category + '</p>');
@@ -122,6 +123,7 @@ $(document).ready(function(){
           $newVenueShow.append('<p>' + distance + '</p>');
           $newVenueShow.append('<p>' + rating + '</p>');
           $newVenueShow.append('<p>' + website + '</p>');
+          $newVenueShow.append($addPostForm);
 
           var $newVenueCommentsList = $('<ul class="comments-list"></ul>');
           $newVenueShow.append($newVenueCommentsList);
@@ -163,5 +165,26 @@ function setMarkers(map, venue, infowindow) {
       infowindow.open(map, this);
     });
   }
+
+  $(function(){
+
+  $('body').on('submit', $('.comment-form'), function(){
+    debugger;
+  });
+    
+  })
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
