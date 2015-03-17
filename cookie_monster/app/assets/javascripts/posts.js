@@ -4,21 +4,21 @@ var markers = [];
 
 function renderMap(location) {
 
-    var currentLocation = new google.maps.LatLng(location.coords.latitude, location.coords.longitude);
-    var mapOptions = {
-      center: currentLocation,
-      zoom: 14,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
+  var currentLocation = new google.maps.LatLng(location.coords.latitude, location.coords.longitude);
+  var mapOptions = {
+    center: currentLocation,
+    zoom: 14,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
 
   map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-    var marker = new google.maps.Marker({
-     position: currentLocation,
-     map: map,
-     animation: google.maps.Animation.DROP,
-     icon: 'http://i.imgur.com/DfA8TrB.png?1'
-   });
+  var marker = new google.maps.Marker({
+   position: currentLocation,
+   map: map,
+   animation: google.maps.Animation.DROP,
+   icon: 'http://i.imgur.com/DfA8TrB.png?1'
+ });
 }
 
 function toggleBounce(){
@@ -42,20 +42,20 @@ $(window).load(function(){
 
 });
 
-  function getVenues(location) {
+function getVenues(location) {
 
-    var keyword = "cookies";  
-    var lat = location.coords.latitude;
-    var lng = location.coords.longitude;
+  var keyword = "cookies";  
+  var lat = location.coords.latitude;
+  var lng = location.coords.longitude;
 
-    $.ajax({
-      url: "https://api.foursquare.com/v2/venues/explore?ll=" + lat + "," + lng + "&venuePhotos=1&client_id=I34KOKW5DI2MSD12IHDY2KKYIT2UDUD2VHDC5WTBWX4TG4SJ&client_secret=1V0VGFUVO10EJ0NL03EJCIDNLVS5FTZC0WWWCSXAWY5UDHF2&v=20150301&query=" + keyword,
-      type: 'GET',
-      dataType: 'json',
-      success: function (data) {
-        $('#venues').show();
-        venues = data.response.groups[0].items;
-        $('#venues').empty();
+  $.ajax({
+    url: "https://api.foursquare.com/v2/venues/explore?ll=" + lat + "," + lng + "&venuePhotos=1&client_id=I34KOKW5DI2MSD12IHDY2KKYIT2UDUD2VHDC5WTBWX4TG4SJ&client_secret=1V0VGFUVO10EJ0NL03EJCIDNLVS5FTZC0WWWCSXAWY5UDHF2&v=20150301&query=" + keyword,
+    type: 'GET',
+    dataType: 'json',
+    success: function (data) {
+      $('#venues').show();
+      venues = data.response.groups[0].items;
+      $('#venues').empty();
 
         // Builds markers and elements from venues returned
         $.each( venues, function() {
@@ -137,43 +137,43 @@ $(window).load(function(){
             $newVenueShow.slideToggle();
           });
 
-          $
           $newVenueLi.append($newVenueShow);
+          $newVenueLi.append($comments);
           $venuesList.append($newVenueLi);
           $statsWrapper.append($newVenueLi);
           $venuesList.append($statsWrapper);
 
-        setMarkers(map, this.venue, infowindow);
-        });
-      }
+          setMarkers(map, this.venue, infowindow);
+      });
+    }
   });
 }
 
 function setMarkers(map, venue, infowindow) {
 
-        
-    var marker = new google.maps.Marker({
-      position: new google.maps.LatLng(
-        venue.location.lat,
-        venue.location.lng
-        ),
-      map: map,
-      title: venue.name,
-      icon: 'http://i.imgur.com/rmrs7kG.png?1',
-      animation:google.maps.Animation.DROP
+
+  var marker = new google.maps.Marker({
+    position: new google.maps.LatLng(
+      venue.location.lat,
+      venue.location.lng
+      ),
+    map: map,
+    title: venue.name,
+    icon: 'http://i.imgur.com/rmrs7kG.png?1',
+    animation:google.maps.Animation.DROP
   });      
-      attachInfo(infowindow, map, marker);
+  attachInfo(infowindow, map, marker);
 }
 
-  function attachInfo(infowindow, map, marker) {
-    google.maps.event.addListener(marker,'click',function(){
+function attachInfo(infowindow, map, marker) {
+  google.maps.event.addListener(marker,'click',function(){
 
-      infowindow.close();
-      infowindow.open(map, this);
-    });
-  }
+    infowindow.close();
+    infowindow.open(map, this);
+  });
+}
 
-  $(function(){
+$(function(){
 
   $('body').on('submit', $('.comment-form'), function(){
     $.ajax({
@@ -189,7 +189,11 @@ function setMarkers(map, venue, infowindow) {
       }
     });
   });
- });
+});
+
+// function postComment() {
+//   var $post = $('<li class="tip"></li>').text();
+// }
 
 
 
