@@ -114,7 +114,7 @@ function getVenues(location) {
 
           var $venuesList = $('#venues');
           var $newVenueLi = $('<li><div class="venue-name"><h2>' + this.venue.name + '</h2></div></li>' );
-          var $addPostForm = $('<form class="comment-form" data-id =' + this.venue.id + '><input type="text" name="comment" ><input type="submit" value="Add tip"></form>');
+          // var $addPostForm = $('<form class="comment-form" data-id =' + this.venue.id + '><input type="text" name="comment" ><input type="submit" value="Add tip"></form>');
           var $statsWrapper = $('<div class="stats-wrapper"></div>');
           var $newVenueShow = $('<div class="venue-show"></div>');
           var $comments = $('<div class="comments"></div>');
@@ -125,7 +125,7 @@ function getVenues(location) {
           $newVenueShow.append('<p>' + distance + '</p>');
           $newVenueShow.append('<p>' + rating + '</p>');
           $newVenueShow.append('<p>' + website + '</p>');
-          $newVenueShow.append($addPostForm);
+          // $newVenueShow.append($addPostForm);
           $statsWrapper.append($newVenueShow);
 
           var $newVenueCommentsList = $('<ul class="comments-list"></ul>');
@@ -181,7 +181,6 @@ $(function(){
       type: 'POST',
       dataType: 'json',
       success: function (data) {
-        postComment();
         // define variable for the div element
         // define variable for our wrapper div
         // for each comment we add it will turn into an li inside our div 
@@ -191,13 +190,6 @@ $(function(){
     });
   });
 });
-
-function postComment() {
-  var div = document.getElementById('.comments');
-  var content = document.createTextNode('.comment-form');
-  div.appendChild(content);
-  // var $post = $('<li class="tip"></li>').text();
-}
 
 
 

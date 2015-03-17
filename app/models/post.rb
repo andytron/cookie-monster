@@ -4,4 +4,8 @@ class Post < ActiveRecord::Base
 	has_many :likes
 	has_many :users, through: :likes
 	# validates :foursquare_id, presence: true
+
+	# def venue
+ #        Venue.find_by(foursquare_id: self.foursquare_id)
+ #    end
 end
