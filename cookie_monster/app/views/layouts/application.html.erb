@@ -10,14 +10,15 @@
 <body>
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">Cookie Monster</a>
-      </div>
+      <div class="navbar-header"></div>
       <div class="navbar">
-        <ul class="nav navbar-nav navbar-right">
+        <a class="navbar-brand" href="#">Cookie Monster</a>
+        <% if current_user %>
+          <ul class="nav navbar-nav navbar-right">
             <li><button type="button" class="btn btn-default navbar-btn"><%= link_to "Sign Out", destroy_user_session_path, method: 'DELETE'  %></button></li>
-        </ul>
-       </div>
+          </ul>
+        <% end %>
+      </div>
     </div>
   </nav>
 

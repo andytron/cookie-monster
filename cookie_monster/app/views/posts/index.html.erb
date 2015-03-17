@@ -1,58 +1,63 @@
 <html>
 <head>
-  <p id="notice"><%= notice %></p>
+  <p class="bg-success" data-dismiss="alert"><%= notice %></p>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="/assets/jquery.sticky-kit.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
     <title></title>
 </head>
 <body>
-  <div class="pull-right">
-    <div id="map"></div>
+  <p class="lead"> Welcome to the Cookie Monster, the best cookie finder app on the internets. Ted Stevens would be proud. Your hot and fresh cookies are waiting for you below. Let's get snackin'!</p>
+
+  <div class="container-fluid">
+    <div class="pull-right">
+      <div id="map"></div>
+    </div>
+
+    <div class="pull-left">
+      <h1>Search Results:</h1>
+      <div id="venues"></div>
+
+      <div id="tips">
+      <h1>Customer tips</h1>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Content</th>
+            <th>User</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @posts.each do |post| %>
+            <tr>
+              <td><%= post.title %></td>
+              <td><%= post.content %></td>
+              <td><%= post.user.email %></td>
+              <td><%= link_to 'Show', post %></td>
+                <% if post.user == current_user %>
+                  <td><%= link_to 'Edit', edit_post_path(post) %></td>
+                  <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <% end %>
+                <% if current_user.likes.where(post_id: post.id) != [] %>
+                  <td><%= link_to 'Like', "/posts/#{post.id}/like", class: 'like_post liked' %></td>
+                  <% else %>
+                  <td><%= link_to 'Like', "/posts/#{post.id}/like", class: 'like_post' %></td>
+            <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <%= link_to 'New Post', new_post_path %>
+
+      </div>
+    </div>
   </div>
 
-  <div class="pull-left">
-    <h1>Cookies in Your Area:</h1>
-    <div id="venues"></div>
-
-    <div id="tips">
-    <h1>Customer tips</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.title %></td>
-        <td><%= post.content %></td>
-        <td><%= post.user.email %></td>
-        <td><%= link_to 'Show', post %></td>
-          <% if post.user == current_user %>
-            <td><%= link_to 'Edit', edit_post_path(post) %></td>
-            <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <% end %>
-          <% if current_user.likes.where(post_id: post.id) != [] %>
-            <td><%= link_to 'Like', "/posts/#{post.id}/like", class: 'like_post liked' %></td>
-            <% else %> 
-            <td><%= link_to 'Like', "/posts/#{post.id}/like", class: 'like_post' %></td>
-      <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Post', new_post_path %>
 </body>
 </html>
-
-
