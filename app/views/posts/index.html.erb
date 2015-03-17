@@ -41,7 +41,7 @@
               
                 <% if post.user == current_user %>
                   <td><%= link_to 'Edit', edit_post_path(post) %></td>
-                  <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  <td><%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                 <% end %>
                 <% if current_user.likes.where(post_id: post.id) != [] %>
                   <td><%= link_to 'Like', "/posts/#{post.id}/like", class: 'like_post liked' %></td>
