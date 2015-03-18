@@ -2,23 +2,22 @@
 <html>
 <head>
   <title>Cookie Monster</title>
-
+  <link href='http://fonts.googleapis.com/css?family=Nunito' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
   <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-      <div class="navbar-header"></div>
-      <div class="navbar">
-        <a class="navbar-brand" href="/">Cookie Monster</a>
+    <div class="container">
+        <a class="navbar-brand" href="/"><img style="max-width:300px; margin-top: -7px; "
+             src="http://i.imgur.com/VdIpsez.png"></a>
         <% if current_user %>
           <ul class="nav navbar-nav navbar-right">
             <li><button type="button" class="btn btn-default navbar-btn"><%= link_to "Sign Out", destroy_user_session_path, method: 'DELETE'  %></button></li>
           </ul>
         <% end %>
-      </div>
+      <!-- </div> -->
     </div>
   </nav>
 

@@ -106,8 +106,14 @@ function getVenues(location) {
             rating = "";
           }
 
+          if (this.venue.hours.isOpen) {
+            openNow = "Open Now: Yes ";
+          } else {
+            openNow = "Open Now: No";
+          }
+
           if (this.venue.url) {
-            website = "Website: " + this.venue.url;
+            website = this.venue.url;
           } else {
             website = "";
           }
@@ -124,7 +130,8 @@ function getVenues(location) {
           $newVenueShow.append('<p>' + phone + '</p>');
           $newVenueShow.append('<p>' + distance + '</p>');
           $newVenueShow.append('<p>' + rating + '</p>');
-          $newVenueShow.append('<p>' + website + '</p>');
+          $newVenueShow.append('<p>' + openNow + '</p>');
+          $newVenueShow.append('<p><a href="' + website + '" target="_blank">'+ website + '</a></p>');
           // $newVenueShow.append($addPostForm);
           $statsWrapper.append($newVenueShow);
 

@@ -6,14 +6,18 @@
   padding: 0;
 }
 
-li:hover {
-  cursor: pointer;
-}
-
 .clearfix:after {
   clear: both;
   display: block;
   content: "";
+}
+
+.comment-form {
+  padding: 5px;
+}
+
+.container {
+    margin: 0 auto;
 }
 
 .footer {
@@ -47,41 +51,35 @@ form {
   margin: 0 auto;
 }
 
+h2 {
+  margin: 0 auto;
+}
+
 .lead {
   text-align: center;
 }
 
 #map {
   height: 450px;
-  width: 400px;
-  position: relative;
-  overflow: hidden;
-  transform: translateZ(0px);
-}
-
-.navbar {
-  height: 50px;
-}
-
-.navbar-brand {
-  font-size: 24px;
+  width: 550px;
+  margin-top: 30px;
 }
 
 .navbar-btn {
-  margin-right: 10px;
+  margin-right: 15px;
 }
 
-.pull-right {
-  padding-right: 50px;
+.navbar-default {
+  background-color: #087DD7;
+  border-color: #e7e7e7;
 }
 
-.pull-left {
-  padding-left: 50px;
+.venue-name {
+  cursor: pointer;
 }
 
-.stick {
-  position: fixed;
-  top: 0;
+.venue-show {
+  margin: 4px;
 }
 
 a.like_post.liked {
@@ -99,10 +97,16 @@ body {
   padding-bottom: 70px;
 }
 
-p, ol, ul, td {
+ol, ul, td {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 13px;
   line-height: 18px;
+}
+
+p {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  line-height: 18px; 
 }
 
 pre {
@@ -161,13 +165,3 @@ div {
     list-style: square;
   }
 }
-
-.comments {
-  float: right;
-  width: 50%;
-}
-
-.venue-show {
-  width: 50%;
-}
-

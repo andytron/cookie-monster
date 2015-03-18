@@ -13,15 +13,16 @@
 
   <%= f.hidden_field :foursquare_id %>
   <div class="field">
-    <p><strong>Venue</strong></p>
+    <p class="form-title"><strong>Venue</strong></p>
     <!-- < % = f.label :title %> --><br>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: 'form-control' %>
   </div>
   <div class="field">
-    <%= f.label :content %><br>
-    <%= f.text_field :content %>
+    <p class="form-title"><strong>Tip</strong></p>
+    <!-- < %= f.label :content, class: 'form-group' %><br> -->
+    <%= f.text_area :content, class: 'form-control' %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Add Tip", class: 'btn btn-default' %>
   </div>
 <% end %>

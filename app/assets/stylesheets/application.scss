@@ -13,5 +13,62 @@
  *= require_tree .
  *= require_self
  */
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+body {
+background-color: #eee;
+}
+
+.navbar-brand {
+  font-size: 32px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 500;
+  color: white;
+}
+
+.comments-wrapper {
+	padding: 0;
+}
+
+.tips-headers {
+	width: 100%;
+
+	table {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	th {
+		padding: 0 7px;
+		width: 33.3%;
+		margin: 0 auto;
+	}
+
+	td {
+		overflow-wrap: break-word;
+		vertical-align: baseline;
+	}
+}
+
+.form-title {
+	font-size: 16px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

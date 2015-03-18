@@ -3,61 +3,68 @@
   <p class="bg-success" data-dismiss="alert"><%= notice %></p>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="/assets/jquery.sticky-kit.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
     <title></title>
 </head>
 <body>
-  <p class="lead"> Welcome to the Cookie Monster, the best cookie finder app on the internets. Ted Stevens would be proud. Your hot and fresh cookies are waiting for you below. Let's get snackin'!</p>
+  <div class="container">
 
-  <div class="container-fluid">
-    <div class="pull-right">
-      <div id="map"></div>
-    </div>
-
-    <div class="pull-left">
-      <h1>Search Results:</h1>
-      <div id="venues"></div>
-
-      <div id="tips">
-      <h1>Customer tips</h1>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Venue</th>
-            <th>Tip</th>
-            <th>Username</th>
-            <th colspan="3"></th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @posts.each do |post| %>
-            <tr>
-              <td><%= post.title %></td>
-              <td><%= post.content %></td>
-              <td><%= post.user.email %></td>
-              
-                <% if post.user == current_user %>
-                  <td><%= link_to 'Edit', edit_post_path(post) %></td>
-                  <td><%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                <% end %>
-                <% if current_user.likes.where(post_id: post.id) != [] %>
-                  <td><%= link_to 'Like', "/posts/#{post.id}/like", class: 'like_post liked' %></td>
-                  <% else %>
-                  <td><%= link_to 'Like', "/posts/#{post.id}/like", class: 'like_post' %></td>
-            <% end %>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-
-      <%= link_to 'New Post', new_post_path %>
-
+    <div class="row row-centered">
+      <div class="col-xs-12 col-centered">
+        <p class="lead">Welcome to the Cookie Monster, the best cookie finder app on the internets (Ted Stevens would be proud). Your hot and fresh cookies are waiting for you below. Let's get snackin', you little cookie monster you!</p>
       </div>
     </div>
-  </div>
 
+    <div class="row row-centered">
+      <div class="venue-wrapper col-md-6 col-centered">
+        <h1>Search Results:</h1>
+          <div id="venues"></div>
+      </div>
+      <div class="map-wrapper col-md-6 col-centered">
+      <div id="map"></div>
+      <div class="comments-wrapper col-sm-12 col-centered">
+        <h1>What People Are Saying Nearby:</h1>
+          <div class="tips-headers">
+          <table>
+            <thead>
+              <tr>
+                <th>Venue</th>
+                <th>Username</th>
+                <th>Tip</th>
+                <th colspan="3"></th>
+              </tr>
+            </thead>
+              </div>
+
+            <tbody>
+              <% @posts.each do |post| %>
+                <tr>
+                  <td><%= post.title %></td>
+                  <td><%= post.user.email %></td>
+                  <td><%= post.content %></td>
+                    <% if post.user == current_user %>
+                      <td><%= link_to 'Edit', edit_post_path(post) %></td>
+                      <td><%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    <% end %>
+                    <% if current_user.likes.where(post_id: post.id) != [] %>
+                      <td><%= link_to 'Like', "/posts/#{post.id}/like", class: 'like_post liked' %></td>
+                      <% else %>
+                      <td><%= link_to 'Like', "/posts/#{post.id}/like", class: 'like_post' %></td>
+                <% end %>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <br>
+            <%= link_to 'New Post', new_post_path, class: 'btn btn-default' %>
+          </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="row row-centered">
+    </div>
+
+  </div>
 </body>
 </html>
