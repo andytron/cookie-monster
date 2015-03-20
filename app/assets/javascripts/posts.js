@@ -1,6 +1,5 @@
 var venues;
 var map;
-var markers = [];
 
 function renderMap(location) {
 
@@ -30,12 +29,6 @@ function toggleBounce(){
 }
 
 $(window).load(function(){
-  var lat, lng;
-
-  var returnCoords = function(position){
-    lat = position.coords.latitude;
-    lng = position.coords.longitude;
-  };
 
   navigator.geolocation.getCurrentPosition(getVenues);
   navigator.geolocation.getCurrentPosition(renderMap);
@@ -57,12 +50,7 @@ function getVenues(location) {
       venues = data.response.groups[0].items;
       $('#venues').empty();
 
-        // Builds markers and elements from venues returned
         $.each( venues, function() {
-          // TODO :: STORE THINGS IN markers
-          var venueLat = this.venue.location.lat;
-          var venueLng = this.venue.location.lng;
-          var newMarker = venueLat + venueLng;
           var contentString = '<div id="infowindow-content">' +
           '<h3>' + this.venue.name + '</h3>' +
           '<p>Address: ' + this.venue.location.formattedAddress + '</p>' +
@@ -73,8 +61,6 @@ function getVenues(location) {
           var infowindow = new google.maps.InfoWindow({
             content: contentString
           });
-
-          markers.push( newMarker );
 
           if (this.venue.categories[0].name) {
             category = "Category: " + this.venue.categories[0].name;
@@ -179,25 +165,6 @@ function attachInfo(infowindow, map, marker) {
     infowindow.open(map, this);
   });
 }
-
-$(function(){
-
-  $('body').on('submit', $('.comment-form'), function(){
-    $.ajax({
-      url: '/venues',
-      type: 'POST',
-      dataType: 'json',
-      success: function (data) {
-        // define variable for the div element
-        // define variable for our wrapper div
-        // for each comment we add it will turn into an li inside our div 
-        // append li to the div we want, and then append that to our wrapper div 
-        // attach like button if we're feeling saucy
-      }
-    });
-  });
-});
-
 
 
 
