@@ -37,7 +37,7 @@ $(window).load(function(){
 
 function getVenues(location) {
 
-  var keyword = "cookies";  
+  var keyword = "cookies";
   var lat = location.coords.latitude;
   var lng = location.coords.longitude;
 
@@ -92,11 +92,12 @@ function getVenues(location) {
             rating = "";
           }
 
-          if (this.venue.hours.isOpen) {
-            openNow = "Open Now: Yes ";
-          } else {
-            openNow = "Open Now: No";
-          }
+          // if (this.venue.hours.isOpen) {
+          //   console.log(this);
+          //   openNow = "Open Now: Yes ";
+          // } else {
+          //   openNow = "Open Now: No";
+          // }
 
           if (this.venue.url) {
             website = this.venue.url;
@@ -116,7 +117,7 @@ function getVenues(location) {
           $newVenueShow.append('<p>' + phone + '</p>');
           $newVenueShow.append('<p>' + distance + '</p>');
           $newVenueShow.append('<p>' + rating + '</p>');
-          $newVenueShow.append('<p>' + openNow + '</p>');
+          // $newVenueShow.append('<p>' + openNow + '</p>');
           $newVenueShow.append('<p><a href="' + website + '" target="_blank">'+ website + '</a></p>');
           // $newVenueShow.append($addPostForm);
           $statsWrapper.append($newVenueShow);
@@ -154,7 +155,7 @@ function setMarkers(map, venue, infowindow) {
     title: venue.name,
     icon: 'http://i.imgur.com/TUTfMHG.png?1',
     animation:google.maps.Animation.DROP
-  });      
+  });
   attachInfo(infowindow, map, marker);
 }
 
@@ -165,17 +166,3 @@ function attachInfo(infowindow, map, marker) {
     infowindow.open(map, this);
   });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
